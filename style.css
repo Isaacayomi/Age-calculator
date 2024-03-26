@@ -65,11 +65,13 @@ label {
   border: 1px solid var(--Light-grey);
   border-radius: 0.5rem;
   font-family: "Poppins", sans-serif;
+  font-weight: bolder;
   padding-inline: 0.5rem;
 }
 
 .submit__arrow {
   background-color: var(--Purple);
+  cursor: pointer;
 }
 
 .age__results {
