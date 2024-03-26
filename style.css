@@ -39,8 +39,7 @@ body {
   justify-content: center;
   gap: 1.3rem;
   margin-top: 1.8rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1.5px solid var(--Light-grey);
+  padding-bottom: 1.7rem;
 }
 
 .day,
@@ -71,15 +70,17 @@ label {
 
 .submit__arrow {
   background-color: var(--Purple);
-
 }
 
 .age__results {
+  border-top: 1.5px solid var(--Light-grey);
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding-top: 1.8rem;
   padding-bottom: 1.8rem;
   margin-top: 1.5rem;
+  position: relative;
 }
 
 .age__results p {
@@ -89,7 +90,21 @@ label {
   margin-bottom: -1rem;
 }
 
+.submit__arrow {
+  position: absolute;
+  top: -15%;
+  left: 40%;
+  border-radius: 100%;
+  padding-inline: 0.8rem;
+  padding-block: 0.3rem;
+}
+
+.submit__arrow img {
+  width: 30px;
+  /* padding: 0.4rem; */
+}
+
 .input__num {
   color: var(--Purple);
-  font-size: 3rem; 
+  font-size: 3rem;
 }
