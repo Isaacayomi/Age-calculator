@@ -106,7 +106,7 @@ label {
   /* padding: 0.4rem; */
 }
 
-.input__num {
+.display__result {
   color: var(--Purple);
   font-size: 3rem;
 }
