@@ -27,6 +27,69 @@ body {
 
 .container {
   background-color: var(--White);
-  padding: 1.3rem;
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
   border-radius: 1.5rem 1.5rem 4rem 1.5rem;
+  margin-inline: 1rem;
+}
+
+.form__field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+  margin-top: 1.8rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1.5px solid var(--Light-grey);
+}
+
+.day,
+.month,
+.year {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+label {
+  color: var(--Smokey-grey);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.2rem;
+}
+
+.input__field {
+  width: 90%;
+  padding-block: 0.7rem;
+  border: 1px solid var(--Light-grey);
+  border-radius: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  padding-inline: 0.5rem;
+}
+
+.submit__arrow {
+  background-color: var(--Purple);
+
+}
+
+.age__results {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 1.8rem;
+  margin-top: 1.5rem;
+}
+
+.age__results p {
+  font-size: 3rem;
+  font-style: italic;
+  font-weight: bolder;
+  margin-bottom: -1rem;
+}
+
+.input__num {
+  color: var(--Purple);
+  font-size: 3rem; 
 }
