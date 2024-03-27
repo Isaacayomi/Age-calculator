@@ -26,26 +26,27 @@
     <main class="container">
       <form class="form__field">
         <div class="day">
-          <label for="Day">DAY</label>
+          <label for="Day" class="label__day">DAY</label>
           <input type="text" class="input__field day__field" maxlength="2" />
+          <p class="day__err error">This field is required</p>
         </div>
 
         <div class="month">
-          <label for="Day">MONTH</label>
-        <input type="text" class="input__field month__field" maxlength="2">
+          <label for="month" class="label__month">MONTH</label>
+          <input type="text" class="input__field month__field" maxlength="2" />
+          <p class="month__err error">This field is required</p>
         </div>
 
         <div class="year">
-          <label for="Day">YEAR</label>
-        <input type="text" class="input__field year__field" maxlength="4">
+          <label for="year" class="label__year">YEAR</label>
+          <input type="text" class="input__field year__field" maxlength="4" />
+          <p class="year__err error">This field is required</p>
         </div>
-
       </form>
 
       <div class="age__results">
-
         <div class="submit__arrow">
-          <img src="./assets/images/icon-arrow.svg" alt="submit_icon">
+          <img src="./assets/images/icon-arrow.svg" alt="submit_icon" />
         </div>
 
         <p><span class="display__result year__result">--</span> years</p>
