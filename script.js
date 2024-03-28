@@ -19,9 +19,7 @@ const displayDay = document.querySelector(".day__result");
 const currentDate = new Date();
 console.log(currentDate.getFullYear());
 
-// Validate input fields
 // Empty input fields
-
 const emptyFields = function () {
   // Day input field
   if (inputDay.value === "") {
@@ -59,14 +57,14 @@ const emptyFields = function () {
 
 const invalidDate = function () {
   if (typeof inputDay.value === String) {
-    dayErr.innerHTML = "This field is required";
+    dayErr.textContent = "This field is required";
   }
   if (
     inputDay.value < 1 ||
     inputDay.value > 31 ||
     typeof inputDay.value === String
   ) {
-    dayErr.innerHTML = "Must be a valid date";
+    dayErr.textContent = "Must be a valid date";
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
@@ -76,14 +74,14 @@ const invalidDate = function () {
     inputMonth.value > 12 ||
     typeof inputMonth.value === String
   ) {
-    monthErr.innerHTML = "Must be a valid date";
+    monthErr.textContent = "Must be a valid date";
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
   }
 
   if (inputYear.value > currentDate.getFullYear()) {
-    yearErr.innerHTML = "Must be a valid year";
+    yearErr.textContent = "Must be a valid year";
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";

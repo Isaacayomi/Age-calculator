@@ -79,6 +79,10 @@ label {
   display: none;
 }
 
+.error__border {
+  border:1px solid hsl(0, 0%, 86%)
+}
+
 .submit__arrow {
   background-color: var(--Purple);
   cursor: pointer;
