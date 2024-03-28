@@ -56,14 +56,10 @@ const emptyFields = function () {
 };
 
 const invalidDate = function () {
-  if (typeof inputDay.value === String) {
+  if (isNaN(inputDay.value)) {
     dayErr.textContent = "This field is required";
   }
-  if (
-    inputDay.value < 1 ||
-    inputDay.value > 31 ||
-    typeof inputDay.value === String
-  ) {
+  if (inputDay.value < 1 || inputDay.value > 31 || isNaN(inputDay.value)) {
     dayErr.textContent = "Must be a valid date";
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
@@ -72,7 +68,7 @@ const invalidDate = function () {
   if (
     inputMonth.value < 1 ||
     inputMonth.value > 12 ||
-    typeof inputMonth.value === String
+    isNaN(inputMonth.value)
   ) {
     monthErr.textContent = "Must be a valid date";
     monthErr.style.display = "block";
