@@ -58,14 +58,14 @@ const emptyFields = function () {
 const invalidDate = function () {
   if (isNaN(inputDay.value) || inputDay.value === "") {
     dayErr.textContent = "This field is required";
-  } else if (inputDay.value < 1 || inputDay.value > 31) {
+  } else if (parseInt(inputDay.value) < 1 || parseInt(inputDay.value) > 31) {
     dayErr.textContent = "Must be a valid date";
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
   } else if (isNaN(inputMonth.value) || inputMonth.value === "") {
     monthErr.textContent = "This field is required";
-  } else if (inputMonth.value < 1 || inputMonth.value > 12) {
+  } else if (parseInt(inputMonth.value) < 1 || parseInt(inputMonth.value) > 12) {
     monthErr.textContent = "Must be a valid date";
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
@@ -80,17 +80,17 @@ const invalidDate = function () {
   }
 
   // Validation for months with 30days (September-9, April-4, June-6, November-11)
+  const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
   if (
-    (inputMonth.value === "9" && inputDay.value > 30) ||
-    (inputMonth.value === "4" && inputDay.value > 30) ||
-    (inputMonth.value === "6" && inputDay.value > 30) ||
-    (inputMonth.value === "11" && inputDay.value > 30)
+    monthsWith30Days.includes(parseInt(inputMonth.value)) &&
+    inputDay.value > 30
   ) {
     dayErr.textContent = "Must be a valid date";
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
   }
+
   console.log(typeof inputDay.value);
   console.log(inputDay.value);
   console.log(inputMonth.value);
