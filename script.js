@@ -65,7 +65,10 @@ const invalidDate = function () {
     dayLabel.style.color = "hsl(0, 100%, 67%)";
   } else if (isNaN(inputMonth.value) || inputMonth.value === "") {
     monthErr.textContent = "This field is required";
-  } else if (parseInt(inputMonth.value) < 1 || parseInt(inputMonth.value) > 12) {
+  } else if (
+    parseInt(inputMonth.value) < 1 ||
+    parseInt(inputMonth.value) > 12
+  ) {
     monthErr.textContent = "Must be a valid date";
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
@@ -94,13 +97,35 @@ const invalidDate = function () {
   console.log(typeof inputDay.value);
   console.log(inputDay.value);
   console.log(inputMonth.value);
-  console.log(inputYear.value);
+  console.log(typeof parseInt(inputYear.value));
 
   console.log(Number(typeof "4"));
+};
+
+// Validation for leap years (for years that can be divisible by 4, february has 29 days, otherwise, february has 28 days )
+const isLeapYear = function () {
+  if (parseInt(inputMonth.value) === 2) {
+    if (parseInt(inputYear.value) % 4 === 0) {
+      if (parseInt(inputDay.value) > 29) {
+        dayErr.textContent = "Must be a valid date";
+        dayErr.style.display = "block";
+        inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
+        dayLabel.style.color = "hsl(0, 100%, 67%)";
+      }
+    } else {
+      if (parseInt(inputDay.value) > 28) {
+        dayErr.textContent = "Must be a valid date";
+        dayErr.style.display = "block";
+        inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
+        dayLabel.style.color = "hsl(0, 100%, 67%)";
+      }
+    }
+  }
 };
 
 submit.addEventListener("click", function (e) {
   e.preventDefault();
   emptyFields();
   invalidDate();
+  isLeapYear();
 });
