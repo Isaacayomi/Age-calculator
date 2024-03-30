@@ -16,6 +16,8 @@ const displayYear = document.querySelector(".year__result");
 const displayMonth = document.querySelector(".month__result");
 const displayDay = document.querySelector(".day__result");
 
+const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
+
 const currentDate = new Date();
 console.log(currentDate.getFullYear());
 console.log(currentDate.getMonth() + 1);
@@ -85,7 +87,7 @@ const invalidDate = function () {
   }
 
   // Validation for months with 30days (September-9, April-4, June-6, November-11)
-  const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
+
   if (
     monthsWith30Days.includes(parseInt(inputMonth.value)) &&
     inputDay.value > 30
@@ -126,20 +128,87 @@ const isLeapYear = function () {
 };
 
 // Calculating Age
-const calcAge = function () {
-  // User Year
-  const userYear = currentDate.getFullYear() - parseInt(inputYear.value);
-  displayYear.textContent = userYear;
-  console.log(userYear);
 
-  // User Month
-  let userMonth = currentDate.getMonth() + 1 - parseInt(inputMonth.value);
 
-  if (currentDate.getMonth() + 1 < parseInt(inputMonth.value)) {
-    userMonth--;
-  }
-  console.log(userMonth);
-};
+// const calcAge = function () {
+//   // Calculate years
+//   let userYear = currentDate.getFullYear() - parseInt(inputYear.value);
+
+//   // Calculate months
+//   let userMonth = currentDate.getMonth() - parseInt(inputMonth.value);
+//   if (currentDate.getDate() < parseInt(inputDay.value)) {
+//     userMonth--;
+//   }
+
+//   // Adjust months with year if necessary
+//   if (userMonth < 0) {
+//     userYear--;
+//     userMonth += 12;
+//   }
+
+//   // Calculate days
+//   let userDay = currentDate.getDate() - parseInt(inputDay.value);
+//   if (userDay < 0) {
+//     const daysInPreviousMonth = getLastMonthDays(currentDate.getFullYear(), currentDate.getMonth())
+//     userDay += daysInPreviousMonth;
+//     userMonth--;
+
+//     // Adjust months with year again if necessary
+//     if (userMonth < 0) {
+//       userYear--;
+//       userMonth += 12;
+//     }
+//   }
+
+//   // Display all age components
+//   displayYear.textContent = userYear;
+//   displayMonth.textContent = userMonth;
+//   displayDay.textContent = userDay;
+// };
+
+
+// const calcAge = function () {
+//   // User Year
+//   let userYear = currentDate.getFullYear() - parseInt(inputYear.value);
+//   displayYear.textContent = userYear;
+//   console.log(userYear);
+
+//   // User Month
+//   let userMonth = currentDate.getMonth() + 1 - parseInt(inputMonth.value);
+
+//   if (currentDate.getDay() < parseInt(inputDay.value)) {
+//     console.log(userMonth--);
+//     userMonth--;
+//   }
+
+//   if (userMonth < 0) {
+//     userYear--;
+//     userMonth += 12;
+    
+//   }
+
+//   console.log(userMonth);
+
+//   // User Day
+//   let userDay = currentDate.getDay() - parseInt(inputDay.value);
+
+//   // Months with 30 days
+//   if (
+//     currentDate.getDay() < parseInt(inputDay.value) &&
+//     monthsWith30Days.includes(parseInt(inputMonth.value))
+//   ) {
+//     userDay += 30;
+//     userMonth--;
+//     console.log(userDay);
+
+//     if (userMonth < 0) {
+//       userYear--;
+//       userMonth += 12;
+//     }
+//   }
+
+//   console.log(userDay);
+// };
 
 submit.addEventListener("click", function (e) {
   e.preventDefault();
