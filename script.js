@@ -18,6 +18,7 @@ const displayDay = document.querySelector(".day__result");
 
 const currentDate = new Date();
 console.log(currentDate.getFullYear());
+console.log(currentDate.getMonth() + 1);
 
 // Empty input fields
 const emptyFields = function () {
@@ -55,6 +56,7 @@ const emptyFields = function () {
   }
 };
 
+// Invalid date
 const invalidDate = function () {
   if (isNaN(inputDay.value) || inputDay.value === "") {
     dayErr.textContent = "This field is required";
@@ -123,9 +125,27 @@ const isLeapYear = function () {
   }
 };
 
+// Calculating Age
+const calcAge = function () {
+  // User Year
+  const userYear = currentDate.getFullYear() - parseInt(inputYear.value);
+  displayYear.textContent = userYear;
+  console.log(userYear);
+
+  // User Month
+  let userMonth = currentDate.getMonth() + 1 - parseInt(inputMonth.value);
+
+  if (currentDate.getMonth() + 1 < parseInt(inputMonth.value)) {
+    userMonth--;
+  }
+  console.log(userMonth);
+};
+
 submit.addEventListener("click", function (e) {
   e.preventDefault();
   emptyFields();
   invalidDate();
   isLeapYear();
+
+  calcAge();
 });
