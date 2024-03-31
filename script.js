@@ -129,86 +129,10 @@ const isLeapYear = function () {
 
 // Calculating Age
 
-
-// const calcAge = function () {
-//   // Calculate years
-//   let userYear = currentDate.getFullYear() - parseInt(inputYear.value);
-
-//   // Calculate months
-//   let userMonth = currentDate.getMonth() - parseInt(inputMonth.value);
-//   if (currentDate.getDate() < parseInt(inputDay.value)) {
-//     userMonth--;
-//   }
-
-//   // Adjust months with year if necessary
-//   if (userMonth < 0) {
-//     userYear--;
-//     userMonth += 12;
-//   }
-
-//   // Calculate days
-//   let userDay = currentDate.getDate() - parseInt(inputDay.value);
-//   if (userDay < 0) {
-//     const daysInPreviousMonth = getLastMonthDays(currentDate.getFullYear(), currentDate.getMonth())
-//     userDay += daysInPreviousMonth;
-//     userMonth--;
-
-//     // Adjust months with year again if necessary
-//     if (userMonth < 0) {
-//       userYear--;
-//       userMonth += 12;
-//     }
-//   }
-
-//   // Display all age components
-//   displayYear.textContent = userYear;
-//   displayMonth.textContent = userMonth;
-//   displayDay.textContent = userDay;
-// };
-
-
-// const calcAge = function () {
-//   // User Year
-//   let userYear = currentDate.getFullYear() - parseInt(inputYear.value);
-//   displayYear.textContent = userYear;
-//   console.log(userYear);
-
-//   // User Month
-//   let userMonth = currentDate.getMonth() + 1 - parseInt(inputMonth.value);
-
-//   if (currentDate.getDay() < parseInt(inputDay.value)) {
-//     console.log(userMonth--);
-//     userMonth--;
-//   }
-
-//   if (userMonth < 0) {
-//     userYear--;
-//     userMonth += 12;
-    
-//   }
-
-//   console.log(userMonth);
-
-//   // User Day
-//   let userDay = currentDate.getDay() - parseInt(inputDay.value);
-
-//   // Months with 30 days
-//   if (
-//     currentDate.getDay() < parseInt(inputDay.value) &&
-//     monthsWith30Days.includes(parseInt(inputMonth.value))
-//   ) {
-//     userDay += 30;
-//     userMonth--;
-//     console.log(userDay);
-
-//     if (userMonth < 0) {
-//       userYear--;
-//       userMonth += 12;
-//     }
-//   }
-
-//   console.log(userDay);
-// };
+// My Code
+const calcAge = function () {
+ 
+};
 
 submit.addEventListener("click", function (e) {
   e.preventDefault();
@@ -218,3 +142,47 @@ submit.addEventListener("click", function (e) {
 
   calcAge();
 });
+
+
+// AI code
+/*
+const calcAge = function () {
+  // Calculate years
+  let userYear = currentDate.getFullYear() - parseInt(inputYear.value);
+
+  // Calculate months
+  let userMonth = currentDate.getMonth() - parseInt(inputMonth.value);
+  if (currentDate.getDate() < parseInt(inputDay.value)) {
+    userMonth--;
+  }
+
+  // Adjust months with year if necessary
+  if (userMonth < 0) {
+    userYear--;
+    userMonth += 12;
+  } else {
+    userYear++;
+  }
+
+  // Calculate days
+  let userDay = currentDate.getDate() - parseInt(inputDay.value);
+  if (userDay < 0) {
+    const daysInPreviousMonth = getLastMonthDays(
+      currentDate.getFullYear(),
+      currentDate.getMonth()
+    );
+    userDay += daysInPreviousMonth;
+    userMonth--;
+
+    // Adjust months with year again if necessary
+    if (userMonth < 0) {
+      userYear--;
+      userMonth += 12;
+    }
+  }
+
+  // Display all age components
+  displayYear.textContent = userYear;
+  displayMonth.textContent = userMonth;
+  displayDay.textContent = userDay;
+}; */
