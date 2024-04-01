@@ -18,7 +18,10 @@ const displayDay = document.querySelector(".day__result");
 
 const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
 
-const currentDate = new Date();
+let currentDate = new Date();
+let currentDay = currentDate.getDate(); // current Day
+let currentMonth = currentDate.getMonth() + 1; // Current month
+let currentYear = currentDate.getFullYear(); // Current year
 console.log(currentDate.getFullYear());
 console.log(currentDate.getMonth() + 1);
 
@@ -130,8 +133,59 @@ const isLeapYear = function () {
 // Calculating Age
 
 // My Code
+
 const calcAge = function () {
- 
+  let monthsDay = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  // Calculate the difference in years
+  let userYear = currentYear - parseInt(inputYear.value);
+  console.log(userYear);
+
+  // Calculate the difference in months
+  let userMonth = currentMonth - parseInt(inputMonth.value);
+  if (currentDate.getDate() < parent(inputDay.value)) {
+    userMonth -= 1
+  }
+  console.log(currentDay)
+  console.log(userMonth)
+
+  /*
+
+
+  console.log(userYear);
+
+  
+
+  // If the current month is earlier than the birth month or
+  // if they are in the same month but the current day is earlier
+  // than the birth day, subtract one month from the age
+  if (
+    currentDate.getMonth() < parseInt(inputMonth.value) ||
+    (currentDate.getMonth() == parseInt(inputMonth.value) &&
+      currentDate.getDate() < parseInt(inputDay.value))
+  ) {
+    userMonth--;
+  }
+
+  if (userMonth < 0) {
+    userYear--;
+    userMonth += 12;
+  }
+  console.log(userMonth);
+
+  // Calculate the difference in days
+  let userDay = currentDate.getDate() - parseInt(inputDay.value);
+  if (userDay < 0) {
+    let daysInPreviousMonth = new Date(
+      current.getFullYear(),
+      current.getMonth() - 1,
+      0
+    ).getDate();
+    ageMonths--;
+    ageDays += daysInPreviousMonth;
+  }
+
+  console.log(userDay);
+  */
 };
 
 submit.addEventListener("click", function (e) {
@@ -142,7 +196,6 @@ submit.addEventListener("click", function (e) {
 
   calcAge();
 });
-
 
 // AI code
 /*
