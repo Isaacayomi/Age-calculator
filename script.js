@@ -25,6 +25,12 @@ let currentYear = currentDate.getFullYear(); // Current year
 console.log(currentDate.getFullYear());
 console.log(currentDate.getMonth() + 1);
 
+const emptyFieldsContent = function () {
+  inputDay.textContent = "- -";
+  inputMonth.textContent = "- -";
+  inputYear.textContent = "- -";
+};
+
 // Empty input fields
 const emptyFields = function () {
   // Day input field
@@ -105,8 +111,6 @@ const invalidDate = function () {
   console.log(inputDay.value);
   console.log(inputMonth.value);
   console.log(typeof parseInt(inputYear.value));
-
-  console.log(Number(typeof "4"));
 };
 
 // Validation for leap years (for years that can be divisible by 4, february has 29 days, otherwise, february has 28 days )
@@ -132,12 +136,10 @@ const isLeapYear = function () {
 
 // Calculating Age
 
-// My Code
-
 const calcAge = function () {
   let monthsDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   if (parseInt(inputDay.value) > currentDay) {
-    currentDay = currentDay + monthsDay[currentMonth - 1];
+    currentDay -= monthsDay[currentMonth - 1];
     currentMonth -= 1;
   }
 
@@ -147,7 +149,12 @@ const calcAge = function () {
   }
 
   // Differences
-  const d = currentDay - parseInt(inputDay.value);
+  let d = currentDay - parseInt(inputDay.value);
+  console.log(d);
+  if (d < 0) {
+    d = d + monthsDay[parseInt(inputMonth.value)];
+    console.log(d);
+  }
   const m = currentMonth - parseInt(inputMonth.value);
   const y = currentYear - parseInt(inputYear.value);
 
