@@ -25,12 +25,6 @@ let currentYear = currentDate.getFullYear(); // Current year
 console.log(currentDate.getFullYear());
 console.log(currentDate.getMonth() + 1);
 
-const emptyFieldsContent = function () {
-  inputDay.textContent = "- -";
-  inputMonth.textContent = "- -";
-  inputYear.textContent = "- -";
-};
-
 // Empty input fields
 const emptyFields = function () {
   // Day input field
