@@ -135,57 +135,28 @@ const isLeapYear = function () {
 // My Code
 
 const calcAge = function () {
-  let monthsDay = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  // Calculate the difference in years
-  let userYear = currentYear - parseInt(inputYear.value);
-  console.log(userYear);
-
-  // Calculate the difference in months
-  let userMonth = currentMonth - parseInt(inputMonth.value);
-  if (currentDate.getDate() < parent(inputDay.value)) {
-    userMonth -= 1
-  }
-  console.log(currentDay)
-  console.log(userMonth)
-
-  /*
-
-
-  console.log(userYear);
-
-  
-
-  // If the current month is earlier than the birth month or
-  // if they are in the same month but the current day is earlier
-  // than the birth day, subtract one month from the age
-  if (
-    currentDate.getMonth() < parseInt(inputMonth.value) ||
-    (currentDate.getMonth() == parseInt(inputMonth.value) &&
-      currentDate.getDate() < parseInt(inputDay.value))
-  ) {
-    userMonth--;
+  let monthsDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (parseInt(inputDay.value) > currentDay) {
+    currentDay = currentDay + monthsDay[currentMonth - 1];
+    currentMonth -= 1;
   }
 
-  if (userMonth < 0) {
-    userYear--;
-    userMonth += 12;
-  }
-  console.log(userMonth);
-
-  // Calculate the difference in days
-  let userDay = currentDate.getDate() - parseInt(inputDay.value);
-  if (userDay < 0) {
-    let daysInPreviousMonth = new Date(
-      current.getFullYear(),
-      current.getMonth() - 1,
-      0
-    ).getDate();
-    ageMonths--;
-    ageDays += daysInPreviousMonth;
+  if (parseInt(inputMonth.value) > currentMonth) {
+    currentMonth += 12;
+    currentYear -= 1;
   }
 
-  console.log(userDay);
-  */
+  // Differences
+  const d = currentDay - parseInt(inputDay.value);
+  const m = currentMonth - parseInt(inputMonth.value);
+  const y = currentYear - parseInt(inputYear.value);
+
+  displayDay.textContent = d;
+  displayMonth.textContent = m;
+  displayYear.textContent = y;
+
+  console.log(currentDay);
+  console.log(`Day is: ${d}, Month is: ${m} and Year is : ${y}`);
 };
 
 submit.addEventListener("click", function (e) {
