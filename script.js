@@ -145,10 +145,7 @@ const calcAge = function () {
   // Differences
   let d = currentDay - parseInt(inputDay.value);
   console.log(d);
-  if (d < 0) {
-    d = d + monthsDay[parseInt(inputMonth.value)];
-    console.log(d);
-  }
+
   const m = currentMonth - parseInt(inputMonth.value);
   const y = currentYear - parseInt(inputYear.value);
 
@@ -160,13 +157,17 @@ const calcAge = function () {
   console.log(`Day is: ${d}, Month is: ${m} and Year is : ${y}`);
 };
 
+let isCalculated = false;
+
 submit.addEventListener("click", function (e) {
   e.preventDefault();
-  emptyFields();
-  invalidDate();
-  isLeapYear();
-
-  calcAge();
+  if (!isCalculated) {
+    emptyFields();
+    invalidDate();
+    isLeapYear();
+    calcAge();
+    isCalculated = true;
+  }
 });
 
 // AI code
