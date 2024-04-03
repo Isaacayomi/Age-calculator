@@ -34,6 +34,8 @@ const emptyFields = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
+    console.log('Day error')
+    displayDay.textContent = '--'
     incorrectDetails();
     return;
   } else {
@@ -169,7 +171,6 @@ const calcAge = function () {
   console.log(inputYear.value);
   console.log(inputMonth.value);
   console.log(inputDay.value);
-  // console.log(new Date(2003, 2, 29));
 
   if (parseInt(inputDay.value) > monthDays) {
     console.log("err");
