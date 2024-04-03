@@ -23,6 +23,12 @@ let day = inputDay.value;
 let month = inputMonth.value;
 let year = inputYear.value;
 
+const invalidDetails = function () {
+  displayDay.textContent = "--";
+  displayMonth.textContent = "--";
+  displayYear.textContent = "--";
+};
+
 // Empty input fields
 const emptyFields = function () {
   // Day input field
@@ -30,6 +36,7 @@ const emptyFields = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
+    invalidDetails();
   } else {
     dayErr.style.display = "none";
     inputDay.style.border = "1px solid hsl(0, 0%, 86%)";
@@ -41,6 +48,7 @@ const emptyFields = function () {
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
+    invalidDetails();
   } else {
     monthErr.style.display = "none";
     inputMonth.style.border = "1px solid hsl(0, 0%, 86%)";
@@ -52,6 +60,7 @@ const emptyFields = function () {
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
+    invalidDetails();
   } else {
     yearErr.style.display = "none";
     inputYear.style.border = "1px solid hsl(0, 0%, 86%)";
@@ -86,6 +95,7 @@ const invalidDate = function () {
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
   }
+  invalidDetails();
 
   // Validation for months with 30days (September-9, April-4, June-6, November-11)
 
@@ -97,6 +107,7 @@ const invalidDate = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
+    invalidDetails();
   }
 
   console.log(typeof inputDay.value);
@@ -114,6 +125,7 @@ const isLeapYear = function () {
         dayErr.style.display = "block";
         inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
         dayLabel.style.color = "hsl(0, 100%, 67%)";
+        invalidDetails();
       }
     } else {
       if (parseInt(inputDay.value) > 28) {
@@ -121,6 +133,7 @@ const isLeapYear = function () {
         dayErr.style.display = "block";
         inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
         dayLabel.style.color = "hsl(0, 100%, 67%)";
+        invalidDetails();
       }
     }
   }
@@ -130,16 +143,59 @@ const isLeapYear = function () {
 
 const calcAge = function () {
   // Creating a date object for a specific date
-  let userDob = new Date(year, month - 1, day);
+  let userDob = new Date(
+    parseInt(inputYear.value),
+    parseInt(inputMonth.value) - 1,
+    inputDay.value
+  );
 
   // Getting the number of days in the month
-  let monthDays = new Date(year, (month - 1), day).getDate();
-  console.log(monthDays);
+  let monthDays = new Date(
+    parseInt(inputYear.value),
+    parseInt(inputMonth.value) - 1,
+    parseInt(inputDay.value)
+  ).getDate();
+  console.log(inputYear.value);
+  console.log(inputMonth.value);
+  console.log(inputDay.value);
   // console.log(new Date(2003, 2, 29));
 
   if (day > monthDays) {
     console.log("err");
+    dayErr.style.display = "block";
+    invalidDetails();
+  } else {
+    dayErr.style.display = "none";
   }
+
+  // Differences
+  let userYear = currentDate.getFullYear() - userDob.getFullYear();
+  let userMonth = currentDate.getMonth() - userDob.getMonth();
+  let userDay = currentDate.getDate() - userDob.getDate();
+  console.log(userDay);
+
+  if (userDay < 0) {
+    userMonth--;
+
+    let daysInPreviousMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      0
+    ).getDate();
+
+    userDay += daysInPreviousMonth;
+    console.log(userDay);
+  }
+
+  if (userMonth < 0) {
+    userYear--;
+    userMonth += 12;
+  }
+
+  console.log(userYear, userMonth, userDay);
+  displayYear.textContent = userYear;
+  displayMonth.textContent = userMonth;
+  displayDay.textContent = userDay;
 };
 
 submit.addEventListener("click", function (e) {
