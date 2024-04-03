@@ -16,18 +16,16 @@ const displayYear = document.querySelector(".year__result");
 const displayMonth = document.querySelector(".month__result");
 const displayDay = document.querySelector(".day__result");
 
+const incorrectDetails = function () {
+  console.log(displayYear);
+};
+
 const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
 
 let currentDate = new Date();
 let day = inputDay.value;
 let month = inputMonth.value;
 let year = inputYear.value;
-
-const invalidDetails = function () {
-  displayDay.textContent = "--";
-  displayMonth.textContent = "--";
-  displayYear.textContent = "--";
-};
 
 // Empty input fields
 const emptyFields = function () {
@@ -36,7 +34,8 @@ const emptyFields = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
-    invalidDetails();
+    incorrectDetails();
+    return;
   } else {
     dayErr.style.display = "none";
     inputDay.style.border = "1px solid hsl(0, 0%, 86%)";
@@ -48,7 +47,8 @@ const emptyFields = function () {
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
-    invalidDetails();
+    incorrectDetails();
+    return;
   } else {
     monthErr.style.display = "none";
     inputMonth.style.border = "1px solid hsl(0, 0%, 86%)";
@@ -60,7 +60,8 @@ const emptyFields = function () {
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
-    invalidDetails();
+    incorrectDetails();
+    return;
   } else {
     yearErr.style.display = "none";
     inputYear.style.border = "1px solid hsl(0, 0%, 86%)";
@@ -72,13 +73,16 @@ const emptyFields = function () {
 const invalidDate = function () {
   if (isNaN(inputDay.value) || inputDay.value === "") {
     dayErr.textContent = "This field is required";
+    incorrectDetails();
   } else if (parseInt(inputDay.value) < 1 || parseInt(inputDay.value) > 31) {
     dayErr.textContent = "Must be a valid date";
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
+    incorrectDetails();
   } else if (isNaN(inputMonth.value) || inputMonth.value === "") {
     monthErr.textContent = "This field is required";
+    incorrectDetails();
   } else if (
     parseInt(inputMonth.value) < 1 ||
     parseInt(inputMonth.value) > 12
@@ -87,6 +91,7 @@ const invalidDate = function () {
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
+    incorrectDetails();
   }
 
   if (inputYear.value > currentDate.getFullYear()) {
@@ -94,8 +99,8 @@ const invalidDate = function () {
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
+    incorrectDetails();
   }
-  invalidDetails();
 
   // Validation for months with 30days (September-9, April-4, June-6, November-11)
 
@@ -107,8 +112,9 @@ const invalidDate = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
-    invalidDetails();
+    incorrectDetails();
   }
+  return;
 
   console.log(typeof inputDay.value);
   console.log(inputDay.value);
@@ -125,7 +131,8 @@ const isLeapYear = function () {
         dayErr.style.display = "block";
         inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
         dayLabel.style.color = "hsl(0, 100%, 67%)";
-        invalidDetails();
+        incorrectDetails();
+        return;
       }
     } else {
       if (parseInt(inputDay.value) > 28) {
@@ -133,7 +140,8 @@ const isLeapYear = function () {
         dayErr.style.display = "block";
         inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
         dayLabel.style.color = "hsl(0, 100%, 67%)";
-        invalidDetails();
+        incorrectDetails();
+        return;
       }
     }
   }
@@ -142,6 +150,9 @@ const isLeapYear = function () {
 // Calculating Age
 
 const calcAge = function () {
+  emptyFields();
+  invalidDate();
+  isLeapYear();
   // Creating a date object for a specific date
   let userDob = new Date(
     parseInt(inputYear.value),
@@ -160,10 +171,11 @@ const calcAge = function () {
   console.log(inputDay.value);
   // console.log(new Date(2003, 2, 29));
 
-  if (day > monthDays) {
+  if (parseInt(inputDay.value) > monthDays) {
     console.log("err");
     dayErr.style.display = "block";
-    invalidDetails();
+    displayDay.textContent = "--";
+    return;
   } else {
     dayErr.style.display = "none";
   }
@@ -200,8 +212,9 @@ const calcAge = function () {
 
 submit.addEventListener("click", function (e) {
   e.preventDefault();
-  emptyFields();
-  invalidDate();
-  isLeapYear();
   calcAge();
+
+  // emptyFields();
+  // invalidDate();
+  // isLeapYear();
 });
