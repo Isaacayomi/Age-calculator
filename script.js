@@ -147,6 +147,15 @@ const isLeapYear = function () {
 // Calculating Age
 
 const calcAge = function () {
+  // Check if year is 0
+  if (parseInt(inputYear.value) === 0) {
+    yearErr.textContent = "Year cannot be zero";
+    yearErr.style.display = "block";
+    inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
+    yearLabel.style.color = "hsl(0, 100%, 67%)";
+    return; // Exit the function if year is 0
+  }
+  
   // Creating a date object for a specific date
   let userDob = new Date(
     parseInt(inputYear.value),
