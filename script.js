@@ -40,7 +40,6 @@ const emptyFields = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
-    console.log((displayDay.innerHTML = `--`));
     displayDay.innerHTML = `--`;
     return;
   } else {
@@ -114,11 +113,6 @@ const invalidDate = function () {
     dayLabel.style.color = "hsl(0, 100%, 67%)";
   }
   return;
-
-  console.log(typeof inputDay.value);
-  console.log(inputDay.value);
-  console.log(inputMonth.value);
-  console.log(typeof parseInt(inputYear.value));
 };
 
 // Validation for leap years (for years that can be divisible by 4, february has 29 days, otherwise, february has 28 days )
@@ -155,7 +149,7 @@ const calcAge = function () {
     yearLabel.style.color = "hsl(0, 100%, 67%)";
     return; // Exit the function if year is 0
   }
-  
+
   // Creating a date object for a specific date
   let userDob = new Date(
     parseInt(inputYear.value),
@@ -163,18 +157,19 @@ const calcAge = function () {
     inputDay.value
   );
 
+  if (userDob > currentDate) {
+    return;
+  }
+  console.log(userDob);
+  console.log(currentDate);
+
   // Getting the number of days in the month
   let monthDays = new Date(
     parseInt(inputYear.value),
     parseInt(inputMonth.value) - 1,
     parseInt(inputDay.value)
   ).getDate();
-  console.log(inputYear.value);
-  console.log(inputMonth.value);
-  console.log(inputDay.value);
-
   if (parseInt(inputDay.value) > monthDays) {
-    console.log("err");
     dayErr.style.display = "block";
     displayDay.textContent = "--";
     return;
@@ -186,7 +181,6 @@ const calcAge = function () {
   let userYear = currentDate.getFullYear() - userDob.getFullYear();
   let userMonth = currentDate.getMonth() - userDob.getMonth();
   let userDay = currentDate.getDate() - userDob.getDate();
-  console.log(userDay);
 
   if (userDay < 0) {
     userMonth--;
@@ -198,7 +192,6 @@ const calcAge = function () {
     ).getDate();
 
     userDay += daysInPreviousMonth;
-    console.log(userDay);
   }
 
   if (userMonth < 0) {
@@ -206,7 +199,6 @@ const calcAge = function () {
     userMonth += 12;
   }
 
-  console.log(typeof userYear, userMonth, userDay);
   displayYear.textContent = userYear;
   displayMonth.textContent = userMonth;
   displayDay.textContent = userDay;
