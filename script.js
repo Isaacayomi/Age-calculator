@@ -158,6 +158,23 @@ const calcAge = function () {
   );
 
   if (userDob > currentDate) {
+    //Invalid Date
+    dayErr.textContent = "Must be a valid date";
+    dayErr.style.display = "block";
+    inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
+    dayLabel.style.color = "hsl(0, 100%, 67%)";
+
+    //Invalid Month
+    monthErr.textContent = "Must be a valid date";
+    monthErr.style.display = "block";
+    inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
+    monthLabel.style.color = "hsl(0, 100%, 67%)";
+
+    //Invalid Year
+    yearErr.textContent = "Must be a valid year";
+    yearErr.style.display = "block";
+    inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
+    yearLabel.style.color = "hsl(0, 100%, 67%)";
     return;
   }
   console.log(userDob);
