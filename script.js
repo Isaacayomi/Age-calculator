@@ -21,12 +21,9 @@ const monthErrorParagraph = document.querySelector(".month__error__paragraph");
 const yearErrorParagraph = document.querySelector(".year__error__paragraph");
 
 const incorrectDetails = function () {
-  // console.log(displayYear);
-  if (emptyFields || invalidDate) {
-    dayErrorParagraph.textContent = `-- days`;
-    monthErrorParagraph.textContent = `-- months`;
-    yearErrorParagraph.textContent = `-- years`;
-  }
+  // dayErrorParagraph.textContent = `-- days`;
+  // monthErrorParagraph.textContent = `-- months`;
+  // yearErrorParagraph.textContent = `-- years`;
 };
 
 const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
@@ -43,7 +40,8 @@ const emptyFields = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
-    incorrectDetails();
+    console.log((displayDay.innerHTML = `--`));
+    displayDay.innerHTML = `--`;
     return;
   } else {
     dayErr.style.display = "none";
@@ -56,7 +54,6 @@ const emptyFields = function () {
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
-    incorrectDetails();
     return;
   } else {
     monthErr.style.display = "none";
@@ -69,7 +66,6 @@ const emptyFields = function () {
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
-    incorrectDetails();
     return;
   } else {
     yearErr.style.display = "none";
@@ -82,16 +78,13 @@ const emptyFields = function () {
 const invalidDate = function () {
   if (isNaN(inputDay.value) || inputDay.value === "") {
     dayErr.textContent = "This field is required";
-    // incorrectDetails();
   } else if (parseInt(inputDay.value) < 1 || parseInt(inputDay.value) > 31) {
     dayErr.textContent = "Must be a valid date";
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
-    // incorrectDetails();
   } else if (isNaN(inputMonth.value) || inputMonth.value === "") {
     monthErr.textContent = "This field is required";
-    // incorrectDetails();
   } else if (
     parseInt(inputMonth.value) < 1 ||
     parseInt(inputMonth.value) > 12
@@ -100,7 +93,6 @@ const invalidDate = function () {
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
-    // incorrectDetails();
   }
 
   if (inputYear.value > currentDate.getFullYear()) {
@@ -108,7 +100,6 @@ const invalidDate = function () {
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
-    // incorrectDetails();
   }
 
   // Validation for months with 30days (September-9, April-4, June-6, November-11)
@@ -121,7 +112,6 @@ const invalidDate = function () {
     dayErr.style.display = "block";
     inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
     dayLabel.style.color = "hsl(0, 100%, 67%)";
-    // incorrectDetails();
   }
   return;
 
@@ -140,7 +130,6 @@ const isLeapYear = function () {
         dayErr.style.display = "block";
         inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
         dayLabel.style.color = "hsl(0, 100%, 67%)";
-        // incorrectDetails();
         return;
       }
     } else {
@@ -149,7 +138,6 @@ const isLeapYear = function () {
         dayErr.style.display = "block";
         inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
         dayLabel.style.color = "hsl(0, 100%, 67%)";
-        // incorrectDetails();
         return;
       }
     }
@@ -159,9 +147,6 @@ const isLeapYear = function () {
 // Calculating Age
 
 const calcAge = function () {
-  emptyFields();
-  invalidDate();
-  isLeapYear();
   // Creating a date object for a specific date
   let userDob = new Date(
     parseInt(inputYear.value),
@@ -212,7 +197,11 @@ const calcAge = function () {
     userMonth += 12;
   }
 
-  console.log(userYear, userMonth, userDay);
+  emptyFields();
+  invalidDate();
+  isLeapYear();
+
+  console.log(typeof userYear, userMonth, userDay);
   displayYear.textContent = userYear;
   displayMonth.textContent = userMonth;
   displayDay.textContent = userDay;
