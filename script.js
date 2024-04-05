@@ -197,10 +197,6 @@ const calcAge = function () {
     userMonth += 12;
   }
 
-  emptyFields();
-  invalidDate();
-  isLeapYear();
-
   console.log(typeof userYear, userMonth, userDay);
   displayYear.textContent = userYear;
   displayMonth.textContent = userMonth;
@@ -209,9 +205,20 @@ const calcAge = function () {
 
 submit.addEventListener("click", function (e) {
   e.preventDefault();
-  calcAge();
+  // Perform error checks first
+  emptyFields();
+  invalidDate();
+  isLeapYear();
 
-  // emptyFields();
-  // invalidDate();
-  // isLeapYear();
+  // Check if any error message is displayed for any input field
+  if (
+    dayErr.style.display === "block" ||
+    monthErr.style.display === "block" ||
+    yearErr.style.display === "block"
+  ) {
+    return; // Exit the function if any error message is displayed
+  }
+
+  // Proceed to calculate age
+  calcAge();
 });
