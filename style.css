@@ -62,11 +62,13 @@ label {
 .input__field {
   width: 90%;
   padding-block: 0.7rem;
+  outline: none;
   border: 1px solid var(--Light-grey);
   border-radius: 0.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: bolder;
   padding-inline: 0.5rem;
+  transition: .4s ease-in-out;
 }
 
 .error {
@@ -75,7 +77,9 @@ label {
   font-style: italic;
 }
 
-.day__err, .month__err, .year__err {
+.day__err,
+.month__err,
+.year__err {
   display: none;
 }
 
@@ -109,6 +113,7 @@ label {
   border-radius: 100%;
   padding-inline: 0.8rem;
   padding-block: 0.3rem;
+  transition: .4s ease-in-out;
 }
 
 .submit__arrow img {
@@ -119,4 +124,25 @@ label {
 .display__result {
   color: var(--Purple);
   font-size: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 450px;
+    padding-inline: 2rem;
+  }
+
+  .submit__arrow {
+    left: 87%;
+  }
+
+  .submit__arrow:hover {
+    background-color: var(--Off-black);
+  }
+
+ .input__field:hover {
+    outline: none;
+    border: 1px solid var(--Purple);
+    cursor: pointer;
+  }
 }

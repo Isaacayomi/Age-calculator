@@ -82,7 +82,7 @@ const invalidDate = function () {
     parseInt(inputMonth.value) < 1 ||
     parseInt(inputMonth.value) > 12
   ) {
-    monthErr.textContent = "Must be a valid date";
+    monthErr.textContent = "Must be a valid month";
     monthErr.style.display = "block";
     inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
     monthLabel.style.color = "hsl(0, 100%, 67%)";
