@@ -89,7 +89,7 @@ const invalidDate = function () {
   }
 
   if (inputYear.value > currentDate.getFullYear()) {
-    yearErr.textContent = "Must be a valid year";
+    yearErr.textContent = "Year must be in the past";
     yearErr.style.display = "block";
     inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
     yearLabel.style.color = "hsl(0, 100%, 67%)";
@@ -135,8 +135,8 @@ const isLeapYear = function () {
 // Error message for dates in the future
 const futureIncorrectDetails = function () {
   if (
-    (parseInt(inputYear.value) === currentDate.getFullYear() &&
-      parseInt(inputMonth.value) > currentDate.getMonth()) ||
+    parseInt(inputYear.value) === currentDate.getFullYear() &&
+    parseInt(inputMonth.value) > currentDate.getMonth() &&
     parseInt(inputDay.value) > currentDate.getDate()
   ) {
     dayErr.textContent = "Day must be in the past";
@@ -234,6 +234,36 @@ const calcAge = function () {
   displayYear.textContent = userYear;
   displayMonth.textContent = userMonth;
   displayDay.textContent = userDay;
+
+
+  // Counting animation
+  let dayResult = 0;
+  let monthResult = 0;
+  yearResult = 0;
+
+  const dayInterval = setInterval(() => {
+    dayResult++;
+    console.log("day result: " + dayResult);
+    if (dayResult === userDay) {
+      clearInterval(dayInterval);
+    }
+  }, 50);
+
+  const monthInterval = setInterval(() => {
+    monthResult++;
+    console.log("Month result: " + monthResult);
+    if (monthResult === userMonth) {
+      clearInterval(monthInterval);
+    }
+  });
+
+  const yearInterval = setInterval(() => {
+    yearResult++;
+    console.log("Year result: " + yearResult);
+    if (yearResult === userYear) {
+      clearInterval(yearInterval);
+    }
+  });
 };
 
 submit.addEventListener("click", function (e) {
