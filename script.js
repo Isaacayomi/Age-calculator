@@ -20,12 +20,6 @@ const dayErrorParagraph = document.querySelector(".day__error__paragraph");
 const monthErrorParagraph = document.querySelector(".month__error__paragraph");
 const yearErrorParagraph = document.querySelector(".year__error__paragraph");
 
-const incorrectDetails = function () {
-  // dayErrorParagraph.textContent = `-- days`;
-  // monthErrorParagraph.textContent = `-- months`;
-  // yearErrorParagraph.textContent = `-- years`;
-};
-
 const monthsWith30Days = [4, 6, 9, 11]; // Array for easy comparison
 
 let currentDate = new Date();
@@ -138,8 +132,29 @@ const isLeapYear = function () {
   }
 };
 
-// Calculating Age
+// Error message for dates in the future
+const futureIncorrectDetails = function () {
+  if (
+    (parseInt(inputYear.value) === currentDate.getFullYear() &&
+      parseInt(inputMonth.value) > currentDate.getMonth()) ||
+    parseInt(inputDay.value) > currentDate.getDate()
+  ) {
+    dayErr.textContent = "Day must be in the past";
+    monthErr.textContent = "Month must be in the past";
+    yearErr.textContent = "Year must be in the past";
 
+    dayErr.style.display = "block";
+    monthErr.style.display = "block";
+    yearErr.style.display = "block";
+
+    inputYear.style.border = `1px solid hsl(0, 100%, 67%)`;
+    inputMonth.style.border = `1px solid hsl(0, 100%, 67%)`;
+    inputDay.style.border = `1px solid hsl(0, 100%, 67%)`;
+    return;
+  }
+};
+
+// Calculating Age
 const calcAge = function () {
   // Check if year is 0
   if (parseInt(inputYear.value) === 0) {
@@ -227,6 +242,7 @@ submit.addEventListener("click", function (e) {
   emptyFields();
   invalidDate();
   isLeapYear();
+  futureIncorrectDetails();
 
   // Check if any error message is displayed for any input field
   if (
