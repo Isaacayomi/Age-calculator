@@ -235,35 +235,33 @@ const calcAge = function () {
   displayMonth.textContent = userMonth;
   displayDay.textContent = userDay;
 
-
   // Counting animation
   let dayResult = 0;
   let monthResult = 0;
   yearResult = 0;
 
-  const dayInterval = setInterval(() => {
-    dayResult++;
-    console.log("day result: " + dayResult);
-    if (dayResult === userDay) {
-      clearInterval(dayInterval);
+  const interval = setInterval(() => {
+    if (
+      dayResult < userDay ||
+      monthResult < userMonth ||
+      yearResult < userYear
+    ) {
+      if (dayResult < userDay) {
+        dayResult++;
+        displayDay.textContent = dayResult;
+      }
+      if (monthResult < userMonth) {
+        monthResult++;
+        displayMonth.textContent = monthResult;
+      }
+      if (yearResult < userYear) {
+        yearResult++;
+        displayYear.textContent = yearResult;
+      }
+    } else {
+      clearInterval(interval);
     }
   }, 50);
-
-  const monthInterval = setInterval(() => {
-    monthResult++;
-    console.log("Month result: " + monthResult);
-    if (monthResult === userMonth) {
-      clearInterval(monthInterval);
-    }
-  });
-
-  const yearInterval = setInterval(() => {
-    yearResult++;
-    console.log("Year result: " + yearResult);
-    if (yearResult === userYear) {
-      clearInterval(yearInterval);
-    }
-  });
 };
 
 submit.addEventListener("click", function (e) {
